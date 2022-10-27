@@ -42,11 +42,11 @@ fun AddEditNoteScreen(
 
     val noteBackgroundAnimatable = remember {
         Animatable(
-            Color(if (noteColor != 1) noteColor else viewModel.noteColor.value)
+            Color(if (noteColor != -1) noteColor else viewModel.noteColor.value)
         )
     }
     val scope = rememberCoroutineScope()
-    
+
     LaunchedEffect(key1 = true) {
         viewModel.evenFlow.collectLatest { event ->
             when (event) {
@@ -93,6 +93,7 @@ fun AddEditNoteScreen(
                         .size(50.dp)
                         .shadow(15.dp, CircleShape)
                         .clip(CircleShape)
+                        .background(color)
                         .border(
                             width = 3.dp,
                             color = if (viewModel.noteColor.value == colorInt) {
@@ -119,7 +120,7 @@ fun AddEditNoteScreen(
                 text = titleState.text,
                 hint = titleState.hint,
                 onValueChange = {
-                                viewModel.onEvent(AddEditNoteEvent.EnteredTitle(it))
+                    viewModel.onEvent(AddEditNoteEvent.EnteredTitle(it))
                 },
                 onFocusChange = {
                     viewModel.onEvent(AddEditNoteEvent.ChangeTitleFocus(it))

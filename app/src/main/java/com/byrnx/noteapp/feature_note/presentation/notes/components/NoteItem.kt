@@ -1,10 +1,7 @@
 package com.byrnx.noteapp.feature_note.presentation.notes.components
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -64,11 +61,21 @@ fun NoteItem(
                 .padding(16.dp)
                 .padding(end = 32.dp)
         ) {
-            Text(text = note.title,
-            style = MaterialTheme.typography.h6,
-            color = MaterialTheme.colors.onSurface,
-            maxLines = 10,
-            overflow = TextOverflow.Ellipsis)
+            Text(
+                text = note.title,
+                style = MaterialTheme.typography.h6,
+                color = MaterialTheme.colors.onSurface,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = note.content,
+                style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.onSurface,
+                maxLines = 10,
+                overflow = TextOverflow.Ellipsis
+            )
         }
         IconButton(
             onClick = onDeleteClick,
